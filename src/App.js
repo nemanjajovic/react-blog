@@ -1,11 +1,7 @@
 import "./App.css";
 
 function App() {
-  return (
-    <div className="app">
-      <h1>React blog</h1>
-    </div>
-  );
+  return <main className="App"></main>;
 }
 
 export default App;
