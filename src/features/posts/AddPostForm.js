@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { postAdded } from "./postsSlice";
@@ -6,6 +6,8 @@ import { selectAllUsers } from "../users/usersSlice";
 
 const AddPostForm = () => {
   const dispatch = useDispatch();
+
+  const inputRef = useRef();
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -16,6 +18,15 @@ const AddPostForm = () => {
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onContentChanged = (e) => setContent(e.target.value);
   const onAuthorChanged = (e) => setUserId(e.target.value);
+
+  const saveOnReturn = (e) => {
+    if (e.key === "Enter" && canSave) {
+      dispatch(postAdded(title, content, userId));
+      setTitle("");
+      setContent("");
+      setUserId("");
+    }
+  };
 
   const onSavePostClicked = () => {
     if (title && content) {
@@ -44,6 +55,7 @@ const AddPostForm = () => {
           name="postTitle"
           value={title}
           onChange={onTitleChanged}
+          ref={inputRef}
         />
         <label htmlFor="postAuthor">Author:</label>
         <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
@@ -57,6 +69,7 @@ const AddPostForm = () => {
           name="postContent"
           value={content}
           onChange={onContentChanged}
+          onKeyDown={saveOnReturn}
         />
         <button type="button" disabled={!canSave} onClick={onSavePostClicked}>
           Save post
