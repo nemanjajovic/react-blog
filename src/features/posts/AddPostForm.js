@@ -51,7 +51,7 @@ const AddPostForm = () => {
           {userOptions}
         </select>
         <label htmlFor="postContent">Content:</label>
-        <input
+        <textarea
           type="text"
           id="postContent"
           name="postContent"
