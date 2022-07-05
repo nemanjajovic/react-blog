@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { postAdded } from "./postsSlice";
@@ -6,8 +6,6 @@ import { selectAllUsers } from "../users/usersSlice";
 
 const AddPostForm = () => {
   const dispatch = useDispatch();
-
-  const inputRef = useRef();
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -55,7 +53,6 @@ const AddPostForm = () => {
           name="postTitle"
           value={title}
           onChange={onTitleChanged}
-          ref={inputRef}
         />
         <label htmlFor="postAuthor">Author:</label>
         <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
