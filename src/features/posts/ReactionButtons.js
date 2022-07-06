@@ -4,17 +4,15 @@ import { reactionAdded } from "./postsSlice";
 
 const reactionEmoji = {
   thumbsUp: "👍",
-  wow: "😍",
-  heart: "❤",
-  rocket: "🐱‍🏍",
-  cofee: "☕",
+  wow: "😮",
+  heart: "❤️",
+  rocket: "🚀",
+  coffee: "☕",
 };
-
-import React from "react";
 
 const ReactionButtons = ({ post }) => {
   const dispatch = useDispatch();
-  // Object.entries returns an array of a given objects own [key, value] pairs
+
   const reactionButtons = Object.entries(reactionEmoji).map(([name, emoji]) => {
     return (
       <button
@@ -32,5 +30,4 @@ const ReactionButtons = ({ post }) => {
 
   return <div>{reactionButtons}</div>;
 };
-
 export default ReactionButtons;
